@@ -4,14 +4,14 @@ from models import Friend
 
 
 # Get All Friends
-@app.route("/friends", methods=["GET"])
+@app.route("/api/friends", methods=["GET"])
 def get_friends():
     friends = Friend.query.all()
     results = [friend.to_json() for friend in friends]
     return jsonify(results), 200
 
 
-@app.route("/friends/<int:id>", methods=["GET"])
+@app.route("/api/friends/<int:id>", methods=["GET"])
 def get_friend(id):
     try:
         # Check if the Record Exist in the database
@@ -30,7 +30,7 @@ def get_friend(id):
 
 
 # Create a Friend
-@app.route("/friends", methods=["POST"])
+@app.route("/api/friends", methods=["POST"])
 def create_friend():
     try:
         data = request.json
@@ -77,7 +77,7 @@ def create_friend():
 
 
 # Update a Friend
-@app.route("/friends/<int:id>", methods=["PUT"])
+@app.route("/api/friends/<int:id>", methods=["PUT"])
 def update_friend(id):
     try:
         # Read The Request Body
@@ -106,7 +106,7 @@ def update_friend(id):
 
 
 # Delete a Friend
-@app.route("/friends/<int:id>", methods=["DELETE"])
+@app.route("/api/friends/<int:id>", methods=["DELETE"])
 def delete_friend(id):
     try:
         # Check if the Record Exist in the database
